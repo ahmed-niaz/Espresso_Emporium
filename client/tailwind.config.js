@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        rancho: ['Rancho', 'cursive'],
+        exo: ["Exo 2", 'sans-serif']
+      }
+    },
+
   },
   plugins: [require("daisyui")],
 }
