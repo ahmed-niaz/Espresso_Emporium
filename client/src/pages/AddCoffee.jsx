@@ -38,8 +38,8 @@ const AddCoffee = () => {
     })
 }
 return (
-<main className='h-[1000px]' style={{backgroundImage: `url(${banner})` }}>
- <div className='bg-[#F4F3F0] max-w-[1320px] mx-auto mt-32 rounded-lg'>
+<main className='h-[1000px] border' style={{backgroundImage: `url(${banner})` }}>
+<div className='bg-[#F4F3F0] max-w-[1320px] mx-auto mt-44 border-2 border-yellow-600 rounded-lg'>
  <h2>Add New Coffee</h2>
   <p>
     It is a long established fact that a reader will be distraceted by the

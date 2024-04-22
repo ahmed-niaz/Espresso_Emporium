@@ -10,15 +10,17 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>
+        element: <Home/>,
+        loader: ()=> fetch(`http://localhost:3000/coffee`)
       },
       {
         path: '/addCoffee',
         element: <AddCoffee/>
       }
       ,{
-        path: 'updateCoffee',
-        element: <UpdateCoffee/>
+        path: '/updateCoffee/:id',
+        element: <UpdateCoffee/>,
+        loader: ({params})=> fetch(`http://localhost:3000/coffee/${params.id}`)
       }
     ]
   },
