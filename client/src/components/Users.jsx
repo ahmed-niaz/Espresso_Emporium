@@ -39,7 +39,7 @@ const Users = () => {
                 <th>{user._id}</th>
                 <td>{user.email}</td>
                 <td>{user.createdAt}</td>
-                <td></td>
+                <td>{user.lastLoggedAt}</td>
                 <td>
                   {/* for multiple row that's why need to send the parameters */}
                   <button

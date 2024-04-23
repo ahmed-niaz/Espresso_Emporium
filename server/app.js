@@ -94,6 +94,24 @@ async function run() {
       const users = await cursor.toArray();
       res.send(users)
     })
+
+    // update user Login INFO
+    app.patch(`/user`,async(req,res)=>{
+      // get data from the client
+      const user = req.body;
+      const options = {upsert: true}
+      const filter = {
+        email: user.email,
+      }
+      const updateDoc = {
+        $set: {
+          lastLoggedAt: user.lastLoggedAt,
+        }
+      }
+
+      const result = await userCollection.updateOne(filter, updateDoc, options);
+      res.send(result);
+    })
     // delete user
     app.delete('/user/:id',async(req,res)=>{
       const id = req.params.id;

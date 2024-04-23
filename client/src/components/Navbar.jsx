@@ -18,6 +18,7 @@ const Navbar = () => {
         <NavLink to="/" className='text-white'>Home</NavLink>
         <NavLink to="/users" className='text-white'>Users</NavLink>
         <NavLink to="/register" className='text-white'>Register</NavLink>
+        <NavLink to="/login" className='text-white'>SignIn</NavLink>
       </div>
       </div>
       
