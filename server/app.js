@@ -26,6 +26,7 @@ async function run() {
     await client.connect();
 
     const coffeeCollection = client.db("coffeeDB").collection("coffee");
+    const userCollection = client.db("coffeeDB").collection("user");
 
     // Get all the coffee or read all the coffee form database
     app.get("/coffee", async (req, res) => {
@@ -41,7 +42,7 @@ async function run() {
       const result = await coffeeCollection.findOne(query);
       res.send(result);
     });
-    // add Coffee
+    // add/create Coffee
     app.post("/coffee", async (req, res) => {
       const newCoffee = req.body;
       console.log(newCoffee);
@@ -66,8 +67,8 @@ async function run() {
           taste: updatedCoffee.taste,
         },
       };
-      const result = await coffeeCollection.updateOne(filter,coffee,options);
-      res.send(result)
+      const result = await coffeeCollection.updateOne(filter, coffee, options);
+      res.send(result);
     });
     // delete coffee
     app.delete("/coffee/:id", async (req, res) => {
@@ -76,6 +77,30 @@ async function run() {
       const result = await coffeeCollection.deleteOne(query);
       res.send(result);
     });
+
+    // user related API 's
+   
+    // create user's in the server side
+    app.post(`/user`, async (req, res) => {
+      const user = req.body;
+      console.log(user);
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    });
+
+     // find all the users
+     app.get(`/user`,async(req,res)=>{
+      const cursor = userCollection.find();
+      const users = await cursor.toArray();
+      res.send(users)
+    })
+    // delete user
+    app.delete('/user/:id',async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await userCollection.deleteOne(query)
+      res.send(result)
+    })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
